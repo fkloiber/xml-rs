@@ -103,6 +103,14 @@ impl<R: Read> Events<R> {
 
 }
 
+impl<R: Read> Position for Events<R> {
+    /// Returns the position of the last event produced by the iterator.
+    #[inline]
+    fn position(&self) -> TextPosition {
+        self.reader.position()
+    }
+}
+
 impl<R: Read> Iterator for Events<R> {
     type Item = Result<XmlEvent>;
 
